@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Color(0xFF121212),
           leading: const Icon(Icons.tag_faces, color: Colors.white),
-          title: const Text(  
+          title: const Text(
             "Speezy",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
           ),

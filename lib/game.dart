@@ -25,6 +25,8 @@ class Oyun extends StatelessWidget {
     return liste;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Bolumler>>(

@@ -37,6 +37,16 @@ class Kelimelerdao{
     });
   }
 
+  Future<int> kelimeSayisiniGoster() async {
+    var db = await VeriTabaniY.veritabanierisim();
+    List<Map<String, dynamic>> result = await db.rawQuery("SELECT COUNT(*) as count FROM kelimeler");
+
+
+    int sayi = result.first["count"];
+    return sayi;
+  }
+
+
   Future<List<Bolumler>> bolumlerigetir() async {
     var db = await VeriTabaniY.veritabanierisim();
     List<Map<String, dynamic>> maps = await db.rawQuery("SELECT * FROM bolumler");

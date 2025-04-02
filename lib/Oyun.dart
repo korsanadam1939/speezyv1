@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:speezy/bolumler.dart';
 import 'package:speezy/kelimelerdao.dart';
@@ -14,10 +15,13 @@ class Oyna extends StatefulWidget {
 }
 
 class _OynaState extends State<Oyna> {
+
   String? kelime ;
   String? kelimeanlam;
   int? kelimeid=1;
   late bool durum=true;
+  late int ogrenilenkelimesayisi=0 ;
+
 
   Future<void> goster() async {
     var liste = await Kelimelerdao().rastgelekelime(widget.bolum.bolumid);
@@ -35,20 +39,46 @@ class _OynaState extends State<Oyna> {
     }
   }
 
+
   Future<void> sil(int id) async {
 
-    Kelimelerdao().sil(id);
+    await Kelimelerdao().sil(id);
+
+
+  }
+
+  Future<void> ogrenilenkelimelerioku() async {
+    var sp = await SharedPreferences.getInstance();
+
+    ogrenilenkelimesayisi =await sp.getInt("ogrenilensayisi") ?? 0;
+
+
+
+  }
+
+  Future<void> ogrenilenkelimelerihesapla() async {
+    var sp = await SharedPreferences.getInstance();
+
+    ogrenilenkelimesayisi++;
+    await sp.setInt("ogrenilensayisi", ogrenilenkelimesayisi);
+
 
 
   }
 
 
 
-
   @override
   void initState() {
     super.initState();
+    print(ogrenilenkelimesayisi);
     goster();
+    ogrenilenkelimelerioku().then((_) {
+      setState(() {
+        print(ogrenilenkelimesayisi); // Bu satır ogrenilenkelimesayisi güncellendikten sonra çalışacak.
+      });
+    });
+
 
 
   }
@@ -125,7 +155,10 @@ class _OynaState extends State<Oyna> {
                         setState(() {
                           durum = true;
                         });
+                        ogrenilenkelimelerihesapla();
+
                         sil(kelimeid ?? 1);
+                        print(ogrenilenkelimesayisi);
 
                       }
                       else{

@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "46f8473be162608f189ed0d98ca97d83",
+      "css": "videogame_asset",
+      "code": 59392,
+      "src": "material"
+    }
+  ]
+}

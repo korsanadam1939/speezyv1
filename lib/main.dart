@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color(0xFF121212),
           leading: const Icon(Icons.tag_faces, color: Colors.white),
           title: const Text(
-            "Speakeasy",
+            "Speezy",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
           ),
           actions: <Widget>[

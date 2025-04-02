@@ -15,5 +15,5 @@ class Kelime{
 
   Kelime(this.kelime_id,this.kelime, this.anlam, this.bolum);
 
-
+ //degisiklik
 }

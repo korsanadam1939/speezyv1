@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:speezy/kelime.dart';
-import 'package:speezy/kelimelerdao.dart';
+
+
+import '../utils/file_importers.dart';
 
 class HomeScreen extends StatefulWidget {
   final double ekranyuksekligi;

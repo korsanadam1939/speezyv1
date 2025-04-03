@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:speezy/Oyun.dart';
-import 'package:speezy/bolumler.dart';
-import 'package:speezy/kelimelerdao.dart';
+import 'package:speezy/utils/file_importers.dart';
 
 class Oyun extends StatelessWidget {
   Future<List<Bolumler>> Bolumlerigetir() async {

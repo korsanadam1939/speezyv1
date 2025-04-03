@@ -1,19 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:speezy/AnaSayfa.dart';
-import 'package:speezy/Oyun.dart';
-import 'package:speezy/bolumler.dart';
-import 'package:speezy/game.dart';
-import 'package:speezy/girisekrani.dart';
-import 'package:speezy/kelime.dart';
-import 'package:speezy/kelimelerdao.dart';
-import 'package:speezy/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:speezy/profil.dart';
-import 'package:speezy/veritabaniyardimcisi.dart';
 
 
-import 'package:iconsax/iconsax.dart';
-
+import 'package:speezy/utils/file_importers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -127,8 +114,31 @@ class _MyHomePageState extends State<MyHomePage> {
         return true; // Eğer ilk sekmedeyse çıkışa izin ver
       },
       child: Scaffold(
-
-        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Color(0xFF121212),
+          leading: const Icon(Icons.tag_faces, color: Colors.white),
+          title: const Text(  
+            "Speezy",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_alert_sharp),
+              color: Colors.white,
+              onPressed: () {},
+            ),
+            PopupMenuButton(
+              iconColor: Colors.white,
+              itemBuilder: (BuildContext context) {
+                return [
+                  const PopupMenuItem(child: Text('Bilgi')),
+                  const PopupMenuItem(child: Text('Yardım'))
+                ];
+              },
+            )
+          ],
+        ),
+        backgroundColor: Color(0xFF121212),
 
         // **PageView ile içerik değişimi ve kaydırma**
         body: PageView(
@@ -144,9 +154,9 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(icon: Icon(Iconsax.profile_circle), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.black,
-          backgroundColor: Colors.white,
+          selectedItemColor: Colors.deepPurpleAccent,
+          unselectedItemColor: Colors.white,
+          backgroundColor: Color(0xFF121212),
           onTap: _onItemTapped,
         ),
       ),

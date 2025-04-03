@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:speezy/Oyun.dart';
-import 'package:speezy/bolumler.dart';
-import 'package:speezy/kelime.dart';
-import 'package:speezy/kelimelerdao.dart';
-import 'package:speezy/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:speezy/veritabaniyardimcisi.dart';
+import 'package:speezy/utils/file_importers.dart';
 
 
 class Kelimelerdao{

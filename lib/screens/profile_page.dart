@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:speezy/girisekrani.dart';
-import 'package:speezy/kelime.dart';
-import 'package:speezy/kelimelerdao.dart';
+import '../utils/file_importers.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();

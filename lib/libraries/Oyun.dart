@@ -1,9 +1,5 @@
-import 'dart:math';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:speezy/bolumler.dart';
-import 'package:speezy/kelimelerdao.dart';
+import '../utils/file_importers.dart';
 
 class Oyna extends StatefulWidget {
   final Bolumler bolum;

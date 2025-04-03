@@ -3,12 +3,8 @@ import 'package:speezy/Oyun.dart';
 import 'package:speezy/bolumler.dart';
 import 'package:speezy/kelimelerdao.dart';
 
-
 class Oyun extends StatelessWidget {
-
-
-  Future<List<Bolumler>> Bolumlerigetir() async{
-
+  Future<List<Bolumler>> Bolumlerigetir() async {
     var liste = await Kelimelerdao().bolumlerigetir();
 
     if (liste.isEmpty) {
@@ -17,19 +13,26 @@ class Oyun extends StatelessWidget {
       for (Bolumler k in liste) {
         print("*********");
         print(k.bolumadi);
-
       }
-
-
     }
     return liste;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Bolumler>>(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+
+        centerTitle: true,
+        title: const Text(
+          "Bölümler",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+        ),
+
+      ),
+      body: FutureBuilder<List<Bolumler>>(
         future: Bolumlerigetir(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -73,7 +76,7 @@ class Oyun extends StatelessWidget {
             },
           );
         },
-      );
-
+      ),
+    );
   }
 }

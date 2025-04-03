@@ -48,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       sp.remove("kullaniciadi");
       sp.remove("seviye");
+      sp.remove("ogrenilensayisi");
     });
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>girisekrani()));
 
@@ -80,10 +81,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           leading: SizedBox(height:25,child: Image.asset("resimler/profil.png")),
           title: Row(
             children: [
-              Text(spKullaniciAdi ?? "Yükleniyor...", style: TextStyle(color: Colors.white,)),
-              Text("-",style: TextStyle(color: Colors.white),),
+              Text(spKullaniciAdi ?? "Yükleniyor...", style: TextStyle(color: Colors.black,)),
+              Text("-",style: TextStyle(color: Colors.black),),
 
-              Text(spSifre ?? "Yükleniyor...", style: TextStyle(color: Colors.white,)),
+              Text(spSifre ?? "Yükleniyor...", style: TextStyle(color: Colors.black,)),
             ],
           ),
 
@@ -92,25 +93,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
         ListTile(
-          leading: Icon(Iconsax.setting_45, color: Colors.white),
-          title: Text("Ayarlar", style: TextStyle(color: Colors.white)),
-          trailing: Icon(Icons.arrow_right, color: Colors.white),
+          leading: Icon(Iconsax.setting_45, color: Colors.black),
+          title: Text("Ayarlar", style: TextStyle(color: Colors.black)),
+          trailing: Icon(Icons.arrow_right, color: Colors.black),
           onTap: () {
             print("tıklandı");
           },
         ),
         ListTile(
-          leading: Icon(Icons.sunny, color: Colors.white),
-          title: Text("Açık Tema", style: TextStyle(color: Colors.white)),
-          trailing: Icon(Icons.arrow_right, color: Colors.white),
+          leading: Icon(Icons.sunny, color: Colors.black),
+          title: Text("Açık Tema", style: TextStyle(color: Colors.black)),
+          trailing: Icon(Icons.arrow_right, color: Colors.black),
           onTap: () {
             print("tıklandı");
           },
         ),
         ListTile(
-          leading: Icon(Icons.delete, color: Colors.white),
-          title: Text("Verileri Sil", style: TextStyle(color: Colors.white)),
-          trailing: Icon(Icons.arrow_right, color: Colors.white),
+          leading: Icon(Icons.delete, color: Colors.black),
+          title: Text("Verileri Sil", style: TextStyle(color: Colors.black)),
+          trailing: Icon(Icons.arrow_right, color: Colors.black),
           onTap: () {
 
             verisil();

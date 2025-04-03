@@ -114,30 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return true; // Eğer ilk sekmedeyse çıkışa izin ver
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFF121212),
-          leading: const Icon(Icons.tag_faces, color: Colors.white),
-          title: const Text(  
-            "Speezy",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add_alert_sharp),
-              color: Colors.white,
-              onPressed: () {},
-            ),
-            PopupMenuButton(
-              iconColor: Colors.white,
-              itemBuilder: (BuildContext context) {
-                return [
-                  const PopupMenuItem(child: Text('Bilgi')),
-                  const PopupMenuItem(child: Text('Yardım'))
-                ];
-              },
-            )
-          ],
-        ),
+
         backgroundColor: Color(0xFF121212),
 
         // **PageView ile içerik değişimi ve kaydırma**
@@ -154,9 +131,9 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(icon: Icon(Iconsax.profile_circle), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.deepPurpleAccent,
-          unselectedItemColor: Colors.white,
-          backgroundColor: Color(0xFF121212),
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.black,
+          backgroundColor: Colors.white,
           onTap: _onItemTapped,
         ),
       ),

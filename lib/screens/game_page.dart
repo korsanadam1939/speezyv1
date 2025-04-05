@@ -15,8 +15,10 @@ class Oyun extends StatelessWidget {
     return liste;
   }
 
+
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -45,13 +47,17 @@ class Oyun extends StatelessWidget {
               var bolum = bolumlistesi[indeks];
               return Card(
                 color: Colors.white,
-                elevation: 4,
+
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(
+                    color: Colors.blue,  // Çerçevenin rengi
+                    width: 2,  // Çerçevenin kalınlığı
+                  ),
                 ),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.deepPurpleAccent,
+                    backgroundColor: Color(0xFF000080),
                     child: Text(
                       "${indeks + 1}",
                       style: TextStyle(color: Colors.white),
@@ -70,6 +76,7 @@ class Oyun extends StatelessWidget {
                   },
                 ),
               );
+
             },
           );
         },

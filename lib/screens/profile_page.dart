@@ -69,57 +69,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-
-        ListTile(
-          leading: SizedBox(height:25,child: Image.asset("resimler/profil.png")),
-          title: Row(
-            children: [
-              Text(spKullaniciAdi ?? "Yükleniyor...", style: TextStyle(color: Colors.black,)),
-              Text("-",style: TextStyle(color: Colors.black),),
-
-              Text(spSifre ?? "Yükleniyor...", style: TextStyle(color: Colors.black,)),
-            ],
+    return Scaffold(
+      backgroundColor: Colors.white, // Arkaplan rengini siyah yapıyoruz
+      body: ListView(
+        children: [
+          ListTile(
+            leading: SizedBox(height: 25, child: Image.asset("resimler/profil.png")),
+            title: Row(
+              children: [
+                Text(spKullaniciAdi ?? "Yükleniyor...", style: TextStyle(color: Colors.black)), // Yazı rengini beyaz yapıyoruz
+                Text("-", style: TextStyle(color: Colors.black)),
+                Text(spSifre ?? "Yükleniyor...", style: TextStyle(color: Colors.black)),
+              ],
+            ),
+            onTap: () {
+              print("tıklandı");
+            },
           ),
-
-          onTap: () {
-            print("tıklandı");
-          },
-        ),
-        ListTile(
-          leading: Icon(Iconsax.setting_45, color: Colors.black),
-          title: Text("Ayarlar", style: TextStyle(color: Colors.black)),
-          trailing: Icon(Icons.arrow_right, color: Colors.black),
-          onTap: () {
-            print("tıklandı");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.sunny, color: Colors.black),
-          title: Text("Açık Tema", style: TextStyle(color: Colors.black)),
-          trailing: Icon(Icons.arrow_right, color: Colors.black),
-          onTap: () {
-            print("tıklandı");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.delete, color: Colors.black),
-          title: Text("Verileri Sil", style: TextStyle(color: Colors.black)),
-          trailing: Icon(Icons.arrow_right, color: Colors.black),
-          onTap: () {
-
-            verisil();
-
-            
-            
-            
-            print("tıklandı");
-          },
-        ),
-
-      ],
+          ListTile(
+            leading: Icon(Iconsax.setting_45, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            title: Text("Ayarlar", style: TextStyle(color: Colors.black)), // Yazı rengini beyaz yapıyoruz
+            trailing: Icon(Icons.arrow_right, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            onTap: () {
+              print("tıklandı");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.sunny, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            title: Text("Açık Tema", style: TextStyle(color: Colors.black)), // Yazı rengini beyaz yapıyoruz
+            trailing: Icon(Icons.arrow_right, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            onTap: () {
+              print("tıklandı");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.delete, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            title: Text("Verileri Sil", style: TextStyle(color: Colors.black)), // Yazı rengini beyaz yapıyoruz
+            trailing: Icon(Icons.arrow_right, color: Colors.black), // Icon rengini beyaz yapıyoruz
+            onTap: () {
+              verisil();
+              print("tıklandı");
+            },
+          ),
+        ],
+      ),
     );
   }
+
 }

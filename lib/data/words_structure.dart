@@ -23,7 +23,7 @@ class Kelimelerdao{
       var satir = maps[i];
 
       var b =Bolumler(satir["bolum_ad"], satir["bolum_id"]);
-      var k = Kelime(satir["kelime_id"], satir["kelime_ing"], satir["kelime_ing"], b);
+      var k = Kelime(satir["kelime_id"], satir["kelime_ing"], satir["kelime_ing"],b,satir["kaydedildimi"]);
 
 
       return k;
@@ -80,7 +80,7 @@ class Kelimelerdao{
       var satir = maps[i];
 
       var b = Bolumler(satir["bolum_ad"] ?? "Bilinmeyen Bölüm", satir["bolum_id"]);
-      var k = Kelime(satir["kelime_id"], satir["kelime_ing"], satir["kelime_tr"], b);
+      var k = Kelime(satir["kelime_id"], satir["kelime_ing"], satir["kelime_tr"],b,satir["kaydedildimi"]);
 
       return k;
     });
@@ -97,6 +97,30 @@ class Kelimelerdao{
 
 
   }
+
+  Future<void> kaydedilenekle(Kelime kelime) async {
+    var db = await VeriTabaniY.veritabanierisim();
+    var bilgiler = <String, dynamic>{
+      "kelime_tr": kelime.anlam,
+      "kelime_ing": kelime.kelime,
+      "kelime_id": kelime.kelime_id,
+    };
+
+    await db.insert("kaydedilenkelimeler", bilgiler);
+    print("${kelime.kelime} eklendi");
+  }
+
+  Future<void> kaydedilenguncelle(int kelime_id) async {
+    var db = await VeriTabaniY.veritabanierisim();
+    var bilgiler = <String, dynamic>{
+      "kaydedildimi": 1,
+
+    };
+
+    await db.update("kelimeler",bilgiler,where: "kelime_id=?",whereArgs: [kelime_id]);
+    print(bilgiler);
+  }
+
 
 
 

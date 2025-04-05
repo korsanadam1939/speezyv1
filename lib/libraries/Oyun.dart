@@ -12,36 +12,77 @@ class Oyna extends StatefulWidget {
 
 class _OynaState extends State<Oyna> {
 
+  late Kelime word;
   String? kelime ;
   String? kelimeanlam;
   int? kelimeid=1;
   late bool durum=true;
   late int ogrenilenkelimesayisi=0 ;
+  late bool isButtonEnabled = true;
+  bool icondurum =false;
+  late int kaydedildimi;
 
 
   Future<void> goster() async {
     var liste = await Kelimelerdao().rastgelekelime(widget.bolum.bolumid);
 
     if (liste.isNotEmpty && liste[0].kelime != null) {
+      kaydedildimi =liste[0].kaydedildimi;
+      if (kaydedildimi ==0){
+        icondurum = false;
+      }
+      else{
+        icondurum =true;
+      }
       setState(() {
+        word = liste[0];
         kelime = liste[0].kelime!;
         kelimeanlam = liste[0].anlam;
         kelimeid = liste[0].kelime_id;
+
+
+
+
+
       });
     } else {
       setState(() {
-        kelime = "Kelime bulunamadı!";
+        kelime = "Kelimeler bitti!";
+        kelimeanlam = "Kelimeler bitti !";
+        setState(() {
+          isButtonEnabled = false;
+        });
+
       });
     }
   }
 
 
   Future<void> sil(int id) async {
+    if(id != 30){
+      await Kelimelerdao().sil(id);
+      print("$id li kelime silindi");
 
-    await Kelimelerdao().sil(id);
+
+    }
 
 
   }
+  Future<void> kaydedilenekle(Kelime kelime) async{
+    await Kelimelerdao().kaydedilenekle(kelime);
+    kaydedilendurumguncelle(kelime.kelime_id);
+
+
+
+  }
+
+  Future<void> kaydedilendurumguncelle(int kelime_id) async{
+    await Kelimelerdao().kaydedilenguncelle(kelime_id);
+
+
+
+  }
+
 
   Future<void> ogrenilenkelimelerioku() async {
     var sp = await SharedPreferences.getInstance();
@@ -83,19 +124,19 @@ class _OynaState extends State<Oyna> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF121212),
+        backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: const Text(
           "Oyna",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         ),
       ),
-      backgroundColor: Color(0xFF121212),
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -118,7 +159,9 @@ class _OynaState extends State<Oyna> {
                 width: 320,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors:durum ? [Colors.deepPurple, Colors.black] : [Colors.purple, Colors.black],
+                    colors: durum
+                        ? [Colors.blue,Color(0xFF000080)]
+                        : [Colors.blue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -132,10 +175,48 @@ class _OynaState extends State<Oyna> {
                     ),
                   ],
                 ),
-                child: Center(
-                  child: Text(durum ? (kelime ?? 'yükleniyor') : (kelimeanlam ?? 'yükleniyor'),style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                child: Stack(
+                  children: [
+                    // Ortadaki yazı
+                    Center(
+                      child: Text(
+                        durum ? (kelime ?? 'yükleniyor') : (kelimeanlam ?? 'yükleniyor'),
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+
+                    // Sağ üst köşedeki ikon
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: IconButton(
+                        icon: Icon(icondurum ? Iconsax.archive_add1 : Iconsax.archive_add, color: Colors.white),
+                        onPressed: () {
+                          if(icondurum){
+                            print("bu kelime zaten eklenmiş ");
+
+
+                          }
+                          else{
+                            kaydedilenekle(word);
+                            setState(() {
+                              icondurum = true;
+                            });
+
+                          }
+
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
             ),
           ),
           Row(
@@ -145,19 +226,20 @@ class _OynaState extends State<Oyna> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20, left: 20, right: 10),
                   child: ElevatedButton(
-                    onPressed: () {
-                      if(durum==false){
-                        goster();
+                    onPressed: isButtonEnabled
+                        ? () {
+                      if (durum == false) {
+
                         setState(() {
                           durum = true;
                         });
                         ogrenilenkelimelerihesapla();
 
-                        sil(kelimeid ?? 1);
-                        print(ogrenilenkelimesayisi);
+                        sil(kelimeid ?? 30);
+                        goster();
 
-                      }
-                      else{
+                        print(ogrenilenkelimesayisi);
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Dostum önce kelimenin anlamına bak 😅'),
@@ -165,24 +247,23 @@ class _OynaState extends State<Oyna> {
                           ),
                         );
                       }
-
-
-                    },
+                    }
+                        : null, // Butonu devre dışı bırakır
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
-                      foregroundColor: Colors.black,
+                      backgroundColor:  Color(0xFF000080),
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      elevation: 10,
-                      shadowColor: Colors.deepPurple.withOpacity(0.5),
+                      elevation: 10 ,
+                      shadowColor:  Colors.purple,
                     ),
                     child: Text(
                       "Biliyorum",
                       style: TextStyle(fontSize: 16),
-
                     ),
                   ),
+
                 ),
               ),
               Expanded(
@@ -202,8 +283,8 @@ class _OynaState extends State<Oyna> {
 
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
-                      foregroundColor: Colors.black,
+                      backgroundColor: Color(0xFF000080),
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

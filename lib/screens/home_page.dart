@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
+
   Future<void> ogrenilenkelimelerioku() async {
     var sp = await SharedPreferences.getInstance();
 
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {
       ogrenilenkelimesayisi = sp.getInt("ogrenilensayisi") ?? 0;
-      _progress = ogrenilenkelimesayisi/22;
+      _progress = ogrenilenkelimesayisi/100;
     });
 
 
@@ -152,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          "$ogrenilenkelimesayisi/22 Kelime öğrenildi",
+                          "$ogrenilenkelimesayisi/100 Kelime öğrenildi",
                           style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white70),
                         ),
                       ],

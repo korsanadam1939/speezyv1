@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974085623091",
+    "project_id": "speezyyeni",
+    "storage_bucket": "speezyyeni.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974085623091:android:e5b6432861c4a1d0520246",
+        "android_client_info": {
+          "package_name": "com.example.speezy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn4XjANY3WYbrjiohjXXsKo2G2orwJudc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

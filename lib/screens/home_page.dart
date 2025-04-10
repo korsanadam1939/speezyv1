@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: widget.ekranyuksekligi / 7,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.indigoAccent, Color(0xFF000080)],
+                    colors: [Colors.deepOrange, Color(0xFFE98A5C)],//[Colors.indigoAccent, Color(0xFF000080)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -193,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                           gradient: LinearGradient(
-                            colors: [Color(0xFF000080), Colors.blue],
+                            colors: [Colors.deepOrangeAccent, Colors.red],//colors: [Color(0xFFE98A5C), Color(0xFFFFA57C)],
                             stops: [0, 1],
                             begin: AlignmentDirectional(0, -1),
                             end: AlignmentDirectional(0, 1),

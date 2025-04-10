@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Iconsax.profile_circle), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue,
+          selectedItemColor: Colors.redAccent,
           unselectedItemColor: Colors.black,
           backgroundColor: Colors.white,
           onTap: _onItemTapped,

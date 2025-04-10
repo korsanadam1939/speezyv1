@@ -9,14 +9,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> goster() async {
 
-    var liste = await Kelimelerdao().tumkelimeler();
+    //var liste = await Kelimelerdao().tumkelimeler();
 
-    for(Kelime k in liste){
+    /*for(Kelime k in liste){
       print("kelime adı : ${k.kelime}");
 
 
 
-    }
+    }*/
 
 
   }
@@ -65,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     oturumoku(); // Ekran ilk açıldığında SharedPreferences'ı oku
-    goster();
+    //goster();
   }
 
   @override

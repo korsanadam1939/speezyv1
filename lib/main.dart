@@ -1,30 +1,23 @@
-
-
 import 'package:speezy/utils/file_importers.dart';
+import 'package:speezy/screens/SignPages/SignInOut/register_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  Future<bool> oturumkontrol() async{
+  Future<bool> oturumkontrol() async {
+    var sp = await SharedPreferences.getInstance();
 
-    var sp= await SharedPreferences.getInstance();
+    String spKullaniciAdi = sp.getString("kullaniciadi") ?? "yok";
+    String spSifre = sp.getString("seviye") ?? "yok";
 
-
-    String spKullaniciAdi=sp.getString("kullaniciadi"  ) ??"yok";
-    String spSifre=sp.getString("seviye"  ) ??"yok";
-
-    if(spKullaniciAdi=="yok" && spSifre=="yok"){
+    if (spKullaniciAdi == "yok" && spSifre == "yok") {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
-
-
   }
-
 
   const MyApp({super.key});
 
@@ -39,22 +32,19 @@ class MyApp extends StatelessWidget {
       ),
       home: FutureBuilder<bool>(
           future: oturumkontrol(),
-          builder: (context,snapshot){
-            if(snapshot.hasData){
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
               bool gecisizni = snapshot.data ?? false;
               return gecisizni ? girisekrani() : MyHomePage();
-
-            }else{
+            } else {
               return Container();
             }
-          }
-      ),
+          }),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -106,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
       onWillPop: () async {
         if (_selectedIndex > 0) {
           setState(() {
-            _selectedIndex=0; // Önceki sekmeye geç
+            _selectedIndex = 0; // Önceki sekmeye geç
           });
           _pageController.jumpToPage(_selectedIndex); // Sayfayı değiştir
           return false; // Uygulamadan çıkışı engelle
@@ -114,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
         return true; // Eğer ilk sekmedeyse çıkışa izin ver
       },
       child: Scaffold(
-
         backgroundColor: Color(0xFF121212),
 
         // **PageView ile içerik değişimi ve kaydırma**
@@ -126,9 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(icon: Icon(Iconsax.home4), label: 'Ana Sayfa'),
+            BottomNavigationBarItem(
+                icon: Icon(Iconsax.home4), label: 'Ana Sayfa'),
             BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Öğren'),
-            BottomNavigationBarItem(icon: Icon(Iconsax.profile_circle), label: 'Profil'),
+            BottomNavigationBarItem(
+                icon: Icon(Iconsax.profile_circle), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.blue,

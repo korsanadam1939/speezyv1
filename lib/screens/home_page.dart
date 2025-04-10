@@ -1,13 +1,14 @@
-
-
 import '../utils/file_importers.dart';
+import 'package:speezy/widgets/custom_text_field.dart';
+import 'package:speezy/widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
   final double ekranyuksekligi;
   final Function(int) onTabChange;
 
-
-  const HomeScreen({Key? key, required this.ekranyuksekligi, required this.onTabChange}) : super(key: key);
+  const HomeScreen(
+      {Key? key, required this.ekranyuksekligi, required this.onTabChange})
+      : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -31,8 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     print("Kullanıcı Adı: $spKullaniciAdi, Şifre: $spSifre");
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -41,33 +40,18 @@ class _HomeScreenState extends State<HomeScreen> {
     oturumoku();
   }
 
-
-
-
   Future<void> ogrenilenkelimelerioku() async {
     var sp = await SharedPreferences.getInstance();
 
-
-
     setState(() {
       ogrenilenkelimesayisi = sp.getInt("ogrenilensayisi") ?? 0;
-      _progress = ogrenilenkelimesayisi/100;
+      _progress = ogrenilenkelimesayisi / 100;
     });
-
-
-
-
-
   }
-
-
 
   void _startProgress() {
-    setState(() {
-
-    });
+    setState(() {});
   }
-
 
   @override
   @override
@@ -79,20 +63,23 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true, // Başlık ortalanır
         title: const Text(
           "Speezy",
-          style: TextStyle(color: Color(0xFF000080), fontWeight: FontWeight.w600),
+          style:
+              TextStyle(color: Color(0xFF000080), fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
           icon: const Icon(Iconsax.notification_bing, color: Colors.black),
           onPressed: () {},
         ),
-        ),
-
-
-        body: SingleChildScrollView(
+      ),
+      body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, top: widget.ekranyuksekligi / 130, bottom: widget.ekranyuksekligi / 40),
+              padding: EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  top: widget.ekranyuksekligi / 130,
+                  bottom: widget.ekranyuksekligi / 40),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -114,11 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
-            
-
             Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, bottom: widget.ekranyuksekligi / 45),
+              padding: EdgeInsets.only(
+                  left: 10, right: 10, bottom: widget.ekranyuksekligi / 45),
               child: Container(
                 height: widget.ekranyuksekligi / 7,
                 decoration: BoxDecoration(
@@ -135,12 +120,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Padding(
                           padding: const EdgeInsets.only(bottom: 5),
                           child: Text(
                             "Merhaba $spKullaniciAdi",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white),
                           ),
                         ),
                         Padding(
@@ -154,7 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Text(
                           "$ogrenilenkelimesayisi/100 Kelime öğrenildi",
-                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white70),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white70),
                         ),
                       ],
                     ),
@@ -162,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 12),
               child: Row(
@@ -171,16 +159,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(right: 5),
                     child: Text(
                       "Eğitimler",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Icon(Icons.arrow_forward_ios, size: 18),
                 ],
               ),
             ),
-
             SizedBox(height: 10),
-
             Padding(
               padding: EdgeInsets.only(bottom: widget.ekranyuksekligi / 50),
               child: SingleChildScrollView(
@@ -189,7 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: List.generate(4, (index) {
                     List<String> levels = ["A1", "A2", "B1", "B2"];
                     return Padding(
-                      padding: EdgeInsets.only(right: widget.ekranyuksekligi / 100, left: 10, bottom: 10),
+                      padding: EdgeInsets.only(
+                          right: widget.ekranyuksekligi / 100,
+                          left: 10,
+                          bottom: 10),
                       child: Container(
                         height: widget.ekranyuksekligi / 7.5,
                         width: widget.ekranyuksekligi / 5,
@@ -214,7 +204,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: AlignmentDirectional(0, 0),
                           child: Text(
                             levels[index],
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 38),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 38),
                           ),
                         ),
                       ),
@@ -228,5 +221,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }

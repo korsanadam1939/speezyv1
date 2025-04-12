@@ -1,4 +1,6 @@
 
+import 'package:speezy/Login-Register/loginscreen.dart';
+
 import '../utils/file_importers.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -7,19 +9,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  Future<void> goster() async {
 
-    //var liste = await Kelimelerdao().tumkelimeler();
-
-    /*for(Kelime k in liste){
-      print("kelime adı : ${k.kelime}");
-
-
-
-    }*/
-
-
-  }
 
 
 
@@ -46,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       sp.remove("seviye");
       sp.remove("ogrenilensayisi");
     });
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>girisekrani()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

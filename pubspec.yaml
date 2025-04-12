@@ -82,6 +82,7 @@ flutter:
   assets:
     - resimler/
     - resimler/resimm.png
+    - Veritabani/kelimeler.db
 
 
   #   - images/a_dot_ham.jpeg

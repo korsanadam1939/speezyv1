@@ -1,5 +1,6 @@
+import 'package:speezy/Login-Register/registerpage.dart';
 import 'package:speezy/utils/file_importers.dart';
-import 'package:speezy/screens/SignPages/SignInOut/register_page.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 void main() async{
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               bool gecisizni = snapshot.data ?? false;
-              return gecisizni ? girisekrani() : MyHomePage();
+              return gecisizni ? RegisterScreen() : MyHomePage();
             } else {
               return Container();
             }
@@ -127,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Iconsax.profile_circle), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.redAccent,
+          selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.black,
           backgroundColor: Colors.white,
           onTap: _onItemTapped,
